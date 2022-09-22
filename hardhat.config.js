@@ -44,7 +44,7 @@ module.exports = {
             chainId: 31337,
             url: "http://127.0.0.1:8545/",
             // accounts: given by Hardhat Network
-            blockConfirmations: 1
+            blockConfirmations: 1,
         },
         mainnet: {
             chainId: 1,
@@ -54,14 +54,14 @@ module.exports = {
             //     mnemonic: MNEMONIC,
             // },
             saveDeployments: true,
-            blockConfirmations: 6
+            blockConfirmations: 6,
         },
         goerli: {
             chainId: 5,
             url: GOERLI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [`0x${PRIVATE_KEY}`] : [],
             saveDeployments: true,
-            blockConfirmations: 6
+            blockConfirmations: 6,
         },
         polygon: {
             chainId: 137,
@@ -69,7 +69,7 @@ module.exports = {
             accounts: PRIVATE_KEY !== undefined ? [`0x${PRIVATE_KEY}`] : [],
             saveDeployments: true,
             chainId: 137,
-            blockConfirmations: 6
+            blockConfirmations: 6,
         },
     },
     etherscan: {

@@ -1,26 +1,28 @@
-const { network, getNamedAccounts } = require("hardhat");
 const { developmentChains } = require("../helper-hardhat-config");
+
+const { network } = require("hardhat");
 const { verify } = require("../utils/verify");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments;
-    const { deployer } = await getUnnamedAccounts();
+    const { deployer } = await getNamedAccounts();
 
-    // Deploy contract
-    let args = [];
-    const contract = await deploy("contract"), {
+    const boxv2 = await deploy("BoxV2", {
         from: deployer,
-        args: args,
+        args: [],
         log: true,
-        waitConfirmations: network.config.blockConfirmations || 1
-    }
+        waitConfirmations: network.config.waitBlockConfirmations || 1,
+    });
+
+    // Be sure to check out the hardhat-deploy examples to use UUPS proxies!
+    // https://github.com/wighawag/template-ethereum-contracts
 
     // Verify deployed contract on Etherscan
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        await verify(nftMarketplace.address, args);
+        await verify(boxV2.address, args);
     }
 
     log("-------------------------------------------------------");
 };
 
-module.exports.tags = ["all, contract"];
+module.exports.tags = ["all", "boxV2"];
