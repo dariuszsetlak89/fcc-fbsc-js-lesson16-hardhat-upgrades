@@ -3,6 +3,14 @@ const { developmentChains } = require("../helper-hardhat-config");
 const { network } = require("hardhat");
 const { verify } = require("../utils/verify");
 
+// 1. Upgrade BoxV1 -> BoxV2
+// 2. Proxy -> BoxV1
+//             BoxV2
+
+// 1. Deploy a Proxy manually (similar to sublesson)
+// 2. hardhat-deploy's built-in proxies <- IMPLEMENTED
+// 3. Openzeppelin upgrades plugin <- in scripts/otherUpgradeExamples
+
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
